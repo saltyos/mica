@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# Flake source filter for this repository. Like .gitignore, it governs only
+# this repository; .gitignore lists what git does not track, and both files
+# group their entries under the same categories in the same order.
+
+# Local settings
+/.vscode/
+/.idea/
+/.claude/
+
+# Caches
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# Outputs written into the working tree
+/target/
+*.log
+*.o
+*.a
+*.so
+*.elf
+*.bin
+*.rlib
+*.rmeta

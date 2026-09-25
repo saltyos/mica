@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# Paths git does not track. The flake source set is filtered separately by
+# .flakeignore; both files group their entries under the same categories in
+# the same order.
+
+# Local settings
+/.vscode/
+/.idea/
+/.claude/settings.local.json
+
+# Caches
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+.venv/
+
+# Outputs written into the working tree
+/target/
+*.log
+*.o
+*.a
+*.so
+*.elf
+*.bin
+*.rlib
+*.rmeta
