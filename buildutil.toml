@@ -9,7 +9,7 @@ builder = "rustc-crate"
 tool = "rustc"
 host-tool = true
 allowed-references = "closure"
-src-dirs = ["tools/lib/mica"]
+src-dirs = ["tools/buildutil/lib/mica"]
 outputs = ["libmica.rlib"]
 argv = [
   "--edition=2024",
@@ -17,7 +17,7 @@ argv = [
   "--crate-type=lib",
   "--crate-name=mica",
   "-o", "{out}/libmica.rlib",
-  "{srcroot}/tools/lib/mica/lib.rs",
+  "{srcroot}/tools/buildutil/lib/mica/lib.rs",
 ]
 
 [derivation.lib-mica-bootstrap]
@@ -25,7 +25,7 @@ builder = "rustc-crate"
 tool = "rustc"
 bootstrap = true
 host-tool = true
-src-dirs = ["tools/lib/mica"]
+src-dirs = ["tools/buildutil/lib/mica"]
 outputs = ["libmica.rlib"]
 argv = [
   "--edition=2024",
@@ -33,5 +33,5 @@ argv = [
   "--crate-type=lib",
   "--crate-name=mica",
   "-o", "{out}/libmica.rlib",
-  "{srcroot}/tools/lib/mica/lib.rs",
+  "{srcroot}/tools/buildutil/lib/mica/lib.rs",
 ]
