@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
-# Flake source filter for this repository. Like .gitignore, it governs only
+# buildutil source filter for this repository. Like .gitignore, it governs only
 # this repository; .gitignore lists what git does not track, and both files
 # group their entries under the same categories in the same order.
 

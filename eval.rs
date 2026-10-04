@@ -47,8 +47,14 @@ fn cmp_values(op: CmpOp, l: &Value, r: &Value) -> Result<bool, String> {
             (Value::Str(hay), Value::Str(needle)) => {
                 Ok(hay.split(',').map(str::trim).any(|item| item == needle))
             }
+            // An integer list is carried in its comma-separated form; an
+            // integer literal tests membership of its decimal value.
+            (Value::Str(hay), Value::Int(needle)) => Ok(hay
+                .split(',')
+                .map(str::trim)
+                .any(|item| item.parse::<i64>() == Ok(*needle))),
             _ => Err(format!(
-                "`contains` needs string operands: {:?} vs {:?}",
+                "`contains` needs a list operand and a string or integer: {:?} vs {:?}",
                 l, r
             )),
         };

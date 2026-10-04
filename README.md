@@ -1,10 +1,11 @@
 # mica
 
-`mica` is the shared predicate-language core for the SaltyOS build system: one
-compilation unit (`libmica.rlib`) linked by two independent host build tools —
-**borax** (the configuration resolver) and **flake** (the build engine) — the
-single predicate grammar they must agree on. The libalpm-to-pacman
-relationship: a shared core library beneath two front-end binaries.
+`mica` is the configuration language of the SaltyOS build system: one
+compilation unit (`libmica.rlib`) used by the **buildutil** engine, which
+resolves configuration in process at the start of evaluation, and by the
+`buildutil config` commands (menuconfig, explain, docs and the generated
+configurations), which drive the same modules, so both produce one set of
+values from one set of inputs.
 
 ## Modules
 
@@ -13,6 +14,11 @@ relationship: a shared core library beneath two front-end binaries.
 - `parser` — the recursive-descent parser (`parse_expr`).
 - `eval` — the evaluator over a `FnMut(&str) -> Option<Value>` lookup.
 - `vercmp` — version-order string comparison.
+- `config` — the option graph and its structural validation (`graph`), the
+  persistent override file and override layers, resolution (`resolve`) and
+  the emitted artifacts (`emit`). `resolve_layers` resolves a graph under the
+  persistent file, then each layer in order: an invocation's `-D` overrides,
+  then a configuration variant's declaration.
 
 `lib.rs` curates the public API via `pub use`; consumers use `mica::…`.
 
@@ -23,4 +29,5 @@ option/key names (a bare atom tests `value == "true"`). Comparisons: `=`
 (alias `==`), `!=`, `>=`, `<` (version ordering on strings), and `contains`
 (comma-list membership).
 
-Dependency-free: no `std`-external crates. Licensed GPL-2.0-only.
+Dependency-free: no `std`-external crates. Each file's
+`SPDX-License-Identifier` line states its license; see `LICENSE.md`.

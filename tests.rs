@@ -41,7 +41,7 @@ fn comparisons_and_versions() {
 
 #[test]
 fn string_atom_coercion_and_contains() {
-    // A string-world lookup (flake): bare atom is `value == "true"`.
+    // A string-world lookup (buildutil): bare atom is `value == "true"`.
     let env = &[
         ("DEBUG", Value::Str("true".into())),
         ("QUIET", Value::Str("false".into())),
@@ -52,6 +52,16 @@ fn string_atom_coercion_and_contains() {
     assert!(ev("!QUIET", env).unwrap());
     assert!(ev("PROGS contains \"fluxd-vfsd\"", env).unwrap());
     assert!(!ev("PROGS contains \"vfsd\"", env).unwrap());
+}
+
+#[test]
+fn contains_tests_integer_list_membership() {
+    // An int-list option reaches predicates in its emitted form.
+    let env = &[("PASSES", Value::Str("4,1".into()))];
+    assert!(ev("PASSES contains 4", env).unwrap());
+    assert!(ev("PASSES contains 1", env).unwrap());
+    assert!(!ev("PASSES contains 2", env).unwrap());
+    assert!(ev("PASSES contains \"4\"", env).unwrap());
 }
 
 #[test]

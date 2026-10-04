@@ -1,10 +1,10 @@
-# SPDX-License-Identifier: GPL-2.0-only
-# mica — the shared predicate-language library. One compilation unit
-# (`libmica.rlib`) linked by both build front ends: borax (config resolver)
-# and flake (build engine). The libalpm-to-pacman relationship — a shared
-# core library beneath two independent binaries.
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# mica — the configuration language: predicates, the option graph and its
+# resolution. One compilation unit (`libmica.rlib`) used by the buildutil
+# engine, which resolves configuration in process, and by the `buildutil
+# config` commands, the person-facing configuration front end.
 
-[derivation.mica]
+[derivation.lib-mica]
 builder = "rustc-crate"
 tool = "rustc"
 host-tool = true
@@ -20,7 +20,7 @@ argv = [
   "{srcroot}/tools/lib/mica/lib.rs",
 ]
 
-[derivation.mica-bootstrap]
+[derivation.lib-mica-bootstrap]
 builder = "rustc-crate"
 tool = "rustc"
 bootstrap = true

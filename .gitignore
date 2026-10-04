@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
-# Paths git does not track. The flake source set is filtered separately by
-# .flakeignore; both files group their entries under the same categories in
+# Paths git does not track. The buildutil source set is filtered separately by
+# .buildutilignore; both files group their entries under the same categories in
 # the same order.
 
 # Local settings

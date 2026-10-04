@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-only
 //! mica — the value model and the `Expr` AST, with source-form rendering.
 
-/// The minimal value an operand resolves to. borax maps its typed option
-/// values onto this; flake maps every configuration value as a string.
+/// The minimal value an operand resolves to. `buildutil config` maps its typed
+/// option values onto this; the engine maps every configuration value as a
+/// string.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Value {
     Bool(bool),
@@ -59,8 +60,8 @@ impl Expr {
         }
     }
 
-    /// Pretty-print the expression back to source form (for `borax explain`
-    /// / `borax docs`); binary sub-expressions are parenthesized to preserve
+    /// Pretty-print the expression back to source form (for `buildutil config explain`
+    /// / `buildutil config docs`); binary sub-expressions are parenthesized to preserve
     /// precedence.
     pub fn render(&self) -> String {
         match self {
